@@ -58,10 +58,10 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
                 let alert = UIAlertController(title: "Выберите товар", message: object.stringValue, preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "ОК", style: .default, handler: { (action) in
                     self.view.layer.sublayers?.removeLast()
-                    self.code = object.stringValue ?? ""
-                    self.session.stopRunning()
                 }))
                 present(alert, animated: true, completion: nil)
+                self.code = object.stringValue ?? ""
+                self.session.stopRunning()
             }
         }
     }
@@ -130,7 +130,6 @@ extension ViewController: UICollectionViewDelegateFlowLayout {
 extension ViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let item = products.products[indexPath.item]
-//
         if code != "" {
             item.code = code
             collectionView.reloadData()
